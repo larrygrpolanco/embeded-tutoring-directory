@@ -5,73 +5,181 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LEAP Virtual Tutoring Directory</title>
     <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --text-color-light: #666666;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 800px;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
         h1 {
-            color: #2c3e50;
+            color: var(--primary-color);
             text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .filters {
+            background-color: var(--card-background);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        #tutor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
         .tutor {
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
+            background-color: var(--card-background);
+            border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 5px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .tutor:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
         .tutor h2 {
-            color: #3498db;
+            color: var(--primary-color);
             margin-top: 0;
+            font-size: 1.5em;
         }
         .tutor-info {
             margin-bottom: 10px;
         }
         .tutor-bio {
-            font-style: italic;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .tutor-education {
+            font-size: 0.9em;
+            color: var(--text-color-light);
+            margin-bottom: 15px;
         }
         .book-button {
             display: inline-block;
-            background-color: #2ecc71;
+            background-color: var(--secondary-color);
             color: white;
             padding: 10px 15px;
             text-decoration: none;
             border-radius: 5px;
-            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            align-self: stretch;
         }
         .book-button:hover {
             background-color: #27ae60;
+        }
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+            .filter-group {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <h1>LEAP Virtual Tutoring Directory</h1>
+    
+    <div class="filters">
+        <div class="filter-group">
+            <label for="grade-filter">Filter by Grade Level:</label>
+            <select id="grade-filter">
+                <option value="all">All Grades</option>
+                <option value="Elementary">Elementary Students</option>
+                <option value="Junior High">Junior High Students</option>
+                <option value="High School">High School Students</option>
+                <option value="University">University Students</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="subject-filter">Filter by Subject:</label>
+            <select id="subject-filter">
+                <option value="all">All Subjects</option>
+                <option value="Homework assistance">Homework assistance</option>
+                <option value="Interview preparation">Interview preparation</option>
+                <option value="Speaking practice">Speaking practice</option>
+                <option value="Essay assistance">Essay assistance</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+    </div>
+
     <div id="tutor-container"></div>
 
     <script>
-        // Tutor data array
+        // Updated tutor data array
         const tutors = [
             {
                 name: "John Doe",
-                grades: "9-12",
-                subjects: "Mathematics, Physics",
-                university: "MIT",
-                bio: "John Doe is a passionate educator pursuing his degree in Applied Mathematics at MIT. With a strong background in STEM subjects, he excels in breaking down complex concepts into understandable pieces. John's patient and methodical approach to tutoring has helped numerous students improve their grades and develop a genuine interest in math and science.",
+                grades: ["Elementary", "Junior High"],
+                subjects: ["Homework assistance", "Speaking practice"],
+                education: "Virginia Commonwealth University, 2022",
+                major: "Education",
+                minor: "Psychology",
+                bio: "John Doe is a passionate educator who excels in helping younger students with their homework and improving their speaking skills.",
                 calendlyLink: "https://calendly.com/johndoe-tutor"
             },
             {
                 name: "Jane Smith",
-                grades: "6-10",
-                subjects: "English, Literature, Writing",
-                university: "Stanford University",
-                bio: "Jane Smith is an enthusiastic English major at Stanford University with a knack for creative writing. Her love for literature and language shines through in her tutoring sessions. Jane specializes in helping students improve their writing skills, analyze literary works, and prepare for standardized English tests. Her engaging teaching style makes learning fun and effective.",
+                grades: ["High School", "University"],
+                subjects: ["Essay assistance", "Interview preparation"],
+                education: "Stanford University, 2023",
+                major: "English",
+                minor: "Communication",
+                bio: "Jane Smith is an English major with a knack for essay writing and interview skills. She loves helping older students prepare for academic and professional challenges.",
                 calendlyLink: "https://calendly.com/janesmith-tutor"
+            },
+            {
+                name: "Alex Johnson",
+                grades: ["Junior High", "High School"],
+                subjects: ["Homework assistance", "Other"],
+                education: "Harvard University, 2021",
+                major: "Computer Science",
+                minor: null,
+                bio: "Alex Johnson is a versatile tutor specializing in various subjects. Their 'Other' expertise includes programming and data analysis.",
+                calendlyLink: "https://calendly.com/alexjohnson-tutor"
             }
-            // Add more tutor objects here
+            // Add more tutor objects here as needed
         ];
 
         // Function to create a tutor element
@@ -79,21 +187,40 @@
             return `
                 <div class="tutor">
                     <h2>${tutor.name}</h2>
-                    <div class="tutor-info"><strong>Grade(s):</strong> ${tutor.grades}</div>
-                    <div class="tutor-info"><strong>Subject(s):</strong> ${tutor.subjects}</div>
-                    <div class="tutor-info"><strong>University:</strong> ${tutor.university}</div>
+                    <div class="tutor-info"><strong>Grade Levels:</strong> ${tutor.grades.join(', ')}</div>
+                    <div class="tutor-info"><strong>Subjects:</strong> ${tutor.subjects.join(', ')}</div>
                     <div class="tutor-bio">${tutor.bio}</div>
+                    <div class="tutor-education">
+                        ${tutor.education} • ${tutor.major}${tutor.minor ? ` & ${tutor.minor}` : ''}
+                    </div>
                     <a href="${tutor.calendlyLink}" class="book-button">Book a Session with ${tutor.name.split(' ')[0]}</a>
                 </div>
             `;
         }
 
-        // Populate the tutor container
-        document.addEventListener('DOMContentLoaded', function() {
+        // Function to filter tutors
+        function filterTutors() {
+            const gradeFilter = document.getElementById('grade-filter').value;
+            const subjectFilter = document.getElementById('subject-filter').value;
             const tutorContainer = document.getElementById('tutor-container');
+            
+            tutorContainer.innerHTML = '';
+            
             tutors.forEach(tutor => {
-                tutorContainer.innerHTML += createTutorElement(tutor);
+                if ((gradeFilter === 'all' || tutor.grades.includes(gradeFilter)) &&
+                    (subjectFilter === 'all' || tutor.subjects.includes(subjectFilter))) {
+                    tutorContainer.innerHTML += createTutorElement(tutor);
+                }
             });
+        }
+
+        // Initialize the directory
+        document.addEventListener('DOMContentLoaded', function() {
+            filterTutors();
+
+            // Add event listeners to filters
+            document.getElementById('grade-filter').addEventListener('change', filterTutors);
+            document.getElementById('subject-filter').addEventListener('change', filterTutors);
         });
     </script>
 </body>
