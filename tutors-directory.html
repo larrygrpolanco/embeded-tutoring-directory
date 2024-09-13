@@ -38,6 +38,7 @@
             display: flex;
             justify-content: space-between;
             flex-wrap: wrap;
+            align-items: center;
         }
         .filter-group {
             flex: 1;
@@ -50,7 +51,7 @@
             font-weight: bold;
             color: var(--primary-color);
         }
-        select {
+        select, input[type="text"] {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -84,16 +85,23 @@
         .tutor-info {
             margin-bottom: 10px;
         }
+        .tutor-details {
+            display: none;
+            margin-bottom: 15px;
+        }
+        .tutor-subjects {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
         .tutor-bio {
             margin-bottom: 15px;
-            flex-grow: 1;
         }
         .tutor-education {
             font-size: 0.9em;
             color: var(--text-color-light);
             margin-bottom: 15px;
         }
-        .book-button {
+        .book-button, .view-details {
             display: inline-block;
             background-color: var(--secondary-color);
             color: white;
@@ -102,10 +110,24 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
             text-align: center;
-            align-self: stretch;
+            margin-top: 10px;
         }
-        .book-button:hover {
+        .book-button:hover, .view-details:hover {
             background-color: #27ae60;
+        }
+        .view-details {
+            background-color: var(--primary-color);
+        }
+        .view-details:hover {
+            background-color: #2980b9;
+        }
+        .grade-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
         }
         @media (max-width: 768px) {
             .filters {
@@ -122,13 +144,17 @@
     
     <div class="filters">
         <div class="filter-group">
+            <label for="search">Search Tutors:</label>
+            <input type="text" id="search" placeholder="Enter tutor name or keyword">
+        </div>
+        <div class="filter-group">
             <label for="grade-filter">Filter by Grade Level:</label>
             <select id="grade-filter">
                 <option value="all">All Grades</option>
-                <option value="Elementary">Elementary Students</option>
-                <option value="Junior High">Junior High Students</option>
-                <option value="High School">High School Students</option>
-                <option value="University">University Students</option>
+                <option value="Elementary Students">Elementary Students</option>
+                <option value="Junior High Students">Junior High Students</option>
+                <option value="High School Students">High School Students</option>
+                <option value="University Students">University Students</option>
             </select>
         </div>
         <div class="filter-group">
@@ -139,7 +165,6 @@
                 <option value="Interview preparation">Interview preparation</option>
                 <option value="Speaking practice">Speaking practice</option>
                 <option value="Essay assistance">Essay assistance</option>
-                <option value="Other">Other</option>
             </select>
         </div>
     </div>
@@ -147,7 +172,6 @@
     <div id="tutor-container"></div>
 
     <script>
-        // Updated tutor data array
         const tutors = [
   {
     "name": "Lawrence Ma",
@@ -159,7 +183,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "Stony Brook University 2023",
+    "education": "Stony Brook University, 2023",
     "major": "Linguistics",
     "minor": "",
     "bio": "Lawrence Ma graduated in 2023 at Stony Brook University with a bachelors in Linguistics. He is skilled in language teaching where he was a teaching assistant for Spanish and participated in an internship teaching underprivileged children English in Indonesia. He is excited to be in Taiwan for a Fulbright fellowship and expand his knowledge of language education.",
@@ -175,7 +199,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "2024",
+    "education": "Loyola Marymount University, 2024",
     "major": "Psychology",
     "minor": "",
     "bio": "Rachel Dulski graduated from Loyola Marymount University. She belonged to Ignatians Service Organization and participated in service throughout her undergraduate experience. She enjoys teaching children, creating art, and dancing. ",
@@ -193,7 +217,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Colorado State University 2023",
+    "education": "Colorado State University, 2023",
     "major": "Agricultural Education & Equine Science",
     "minor": "",
     "bio": "Jo is an experienced high school teacher from Colorado in the United States. She excels at assisting students to find understanding by breaking down content to explain the why and how behind it. Jo is an energetic and positive teacher who values high effort from her students. Outside of school, Jo enjoys reading, hiking, and exploring Taiwan!",
@@ -210,7 +234,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Kenyon College 2024",
+    "education": "Kenyon College, 2024",
     "major": "Chinese",
     "minor": "",
     "bio": "Julia received her degree in Modern Languages and Literatures with a focus in Spanish and Mandarin in 2024 from Kenyon College, where she also served as a college language teaching assistant for five semesters. Her creative work has been featured in or is forthcoming from Poetry in Action and Poetry Northwest. Outside of education and writing, Julia also loves visiting museums, exploring the outdoors, and playing soccer. She is excited to help students achieve their language goals and can't wait to meet you!",
@@ -227,9 +251,9 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Virginia Commonwealth University 2022",
-    "major": "Communication Arts; minor in Art History",
-    "minor": "",
+    "education": "Virginia Commonwealth University, 2022",
+    "major": "Communication Arts",
+    "minor": "Art History",
     "bio": "Arden is an experienced English tutor, having worked as one throughout high school and during her time at University. She loves working with students one-on-one and building their confidence when speaking and writing English. Arden has a background in the arts and appreciates any chance to talk about art, dance, or music\u2014in her spare time, she loves to cook, hike, and read.",
     "calendlyLink": "https://calendly.com/arden-gentry-tutor"
   },
@@ -245,7 +269,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Saint Mary's University of Minnesota 2023",
+    "education": "Saint Mary's University of Minnesota, 2023",
     "major": "Masters of Teaching",
     "minor": "",
     "bio": "Teacher Shirley comes from the USA and is excited to be teaching in Taipei, Taiwan this school year. She has over four years of experience teaching 4th graders, junior high schoolers, and students with learning disabilities in the US. She holds a Masters of Teaching Degree from Saint Mary's University of Minnesota and a Minnesota Teaching License in K-6 Elementary Education. In her free time, she likes to explore different sites around Taiwan, try new restaurants and cafe, and go hiking. ",
@@ -265,7 +289,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "College of the Holy Cross + 2023",
+    "education": "College of the Holy Cross, 2023",
     "major": "Health Studies",
     "minor": "",
     "bio": "Maggie is an EMI ETF at NTU this year and was an elementary English teaching assistant in Kinmen last year. She loves connecting with students, sharing stories, and learning from each other. Maggie is able to teach simple English topics like ABCs, grammar, etc. as well as more advanced skills such as culture, test-taking, applications, research, etc.",
@@ -285,7 +309,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Harvey Mudd College 2022",
+    "education": "Harvey Mudd College, 2022",
     "major": "Math",
     "minor": "",
     "bio": "Shanni Lam is currently a Fulbright English Teaching Flagship Fellow at 2 junior high schools in Chiayi County. Although she majored in math and computer science, she also minored in linguistics and environmental analysis, so she really enjoys learning new languages and hopes to go to graduate school in linguistics. With her prior experience in college and corporate recruiting as well as English tutoring, she is excited to help you with English in any context!",
@@ -305,27 +329,10 @@
       "Essay assistance"
     ],
     "education": "Rice University, 2024",
-    "major": "Psychology, Sociology",
-    "minor": "",
+    "major": "Psychology",
+    "minor": "Sociology",
     "bio": "Vanessa graduated from Rice University in May where she studied Psychology and Sociology. She is currently an ETA in a rural town in New Taipei City. Vanessa is excited to volunteer as a tutor and can help with English speaking, writing, and more. She knows some Mandarin.",
     "calendlyLink": "https://calendly.com/vanessa-chuang-tutor"
-  },
-  {
-    "name": "Lawrence Ma",
-    "grades": [
-      "High School Students",
-      "University Students"
-    ],
-    "subjects": [
-      "Homework assistance",
-      "Speaking practice",
-      "Essay assistance"
-    ],
-    "education": "Stony Brook University 2023",
-    "major": "Linguistics",
-    "minor": "",
-    "bio": "Lawrence Ma is a first year Fulbright ETF who is passionate about language education. He has experience in teaching Spanish and English to elementary to university students. He hopes to branch out into the technology space after the Fulbright.",
-    "calendlyLink": "https://calendly.com/lawrence-ma-tutor"
   },
   {
     "name": "Pakou Vang",
@@ -339,7 +346,7 @@
       "Interview preparation",
       "Speaking practice"
     ],
-    "education": "University of Wisconsin Stout 2020",
+    "education": "University of Wisconsin Stout, 2020",
     "major": "Major Apparel Design",
     "minor": "",
     "bio": "Pakou Vang is an experienced educator with a background in Apparel Design and Development who pivoted into the field of language education. Coming from a Hmong ethnic background, Pakou has firsthand experience navigating cultural and language barriers. They hold a TEFL certification in Youth Learners and Business English and have worked extensively with students from various backgrounds in international education and conversation clubs. Passionate about fostering inclusive and engaging learning environments, Pakou enjoys exploring new cultures, trying different foods, and helping students connect through language and shared experiences.",
@@ -359,7 +366,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "University of Iowa 2024 (graduate school)",
+    "education": "University of Iowa, 2024",
     "major": "Masters in Teaching: English Education",
     "minor": "",
     "bio": "Fabian Ouellet-Pinto has taught English as a Second Language to elementary and high school students for 3 years. He has also been a writing consultant for the Education department at the University of Iowa, where he assisted PhD students with their dissertations. Fabian is an energetic teacher and makes sure his students thoroughly understand the material being taught. ",
@@ -379,7 +386,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Northwestern 2024",
+    "education": "Northwestern, 2024",
     "major": "Theatre",
     "minor": "",
     "bio": "Maggie is an ETA located in Hualien and a recent graduate from Northwestern University in the US, where she studied English and theatre. She loves working with people of all ages to build language confidence and skills, and aims to create a fun and supportive environment for students to learn, practice, and grow! Overall, she wants to cheer for her students' successes while also challenging them in order to create confident and passionate English speakers!",
@@ -396,7 +403,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "Boston College 2021",
+    "education": "Boston College, 2021",
     "major": "Mathematics (Finance)",
     "minor": "",
     "bio": "Chris Mastroianni is a 2nd year Taipei ETF who graduated from Boston College in 2021 with a Bachelor's of Science in Math and Finance, magna cum laude. In Taiwan, Chris enjoys participating in marathons, experiencing Taiwan's beautiful nature through hiking, and teaching his 1st and 3rd grade students. In addition to teaching various subject classes, Chris also creates and directs English plays at his school, giving his students the chance to both use authentic English and learn about American culture. His prior teaching experience includes four years of one-on-one tutoring, two years of personal training for disabled people, and a year of mentorship experience, gained from leading a YMCA after-school program. Chris is excited to meet you!",
@@ -414,7 +421,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "University of Florida 2020",
+    "education": "University of Florida, 2020",
     "major": "Japanese Language",
     "minor": "",
     "bio": "Catherine is a tutor from the United States with four years of teaching experience. She has experience in teaching grammar, writing skills, and conversational skills for English learners. Passionate about language learning, she works hard to meet the individual needs of students and looks forward to working with you to meet your language goals.",
@@ -432,7 +439,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Penn State University '21",
+    "education": "Penn State University, 2021",
     "major": "English",
     "minor": "",
     "bio": "Brooks has two years of teaching experience of middle and high school students learning ESL in an Ecuadorian public school. He is currently teaching English through CLIL classes at Zhonglun Middle School in the Songshan district of Taipei. Both positions are co-teaching. He has also worked with adult learners through tutoring Ecuadorian English teachers. He is confident leading independent tutoring sessions and has a beginner level of Mandarin.",
@@ -449,17 +456,15 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "Brandeis University 2024",
-    "major": "Majors: Education, East Asian Studies | Minor: Philosophy",
-    "minor": "",
+    "education": "Brandeis University, 2024",
+    "major": "Majors: Education, East Asian Studies",
+    "minor": "Philosophy",
     "bio": "Annitah is a 2024 Brandeis University graduate who has been teaching and tutoring since 2017. During college, she studied East Asian Studies, Education and Philosophy. She has many years of experience in teaching English as a second language and she is excited to help you reach your learning goals.",
     "calendlyLink": "https://calendly.com/annitah-nakandi-tutor"
   },
   {
     "name": "Javier Garcia Vazquez",
     "grades": [
-      "Elementary Students",
-      "Junior High Students",
       "High School Students",
       "University Students"
     ],
@@ -468,9 +473,9 @@
       "Interview preparation",
       "Speaking practice"
     ],
-    "education": "University of North Texas 2023",
-    "major": "International Studies, Minors in Chemistry, Biology, M",
-    "minor": "",
+    "education": "University of North Texas, 2023",
+    "major": "International Studies, Minors in ",
+    "minor": "Chemistry, Biology",
     "bio": "Javier is an eager tutor ready to help you achieve your English goals! He has had experience with mentorship, and English conversation practice! Learning English can be difficult for many reasons. Javier understands these difficulties on a personal level as he has studied Chinese in the past and understands the struggles one encounters when learning a foreign language. ",
     "calendlyLink": "https://calendly.com/javier-garcia-vazquez-tutor"
   },
@@ -483,7 +488,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "University of Tennessee-Knoxville 2022",
+    "education": "University of Tennessee-Knoxville, 2022",
     "major": "IDP Linguistics w/ concentration on SLA",
     "minor": "",
     "bio": "Sonidda No graduated from the University of Tennessee-Knoxville with a degree in Linguistics, focusing on language learning and ESL/EFL education, along with a minor in Chinese. She\u2019s enjoyed tutoring students at Capital Normal University(\u9996\u90fd\u5e2b\u7bc4\u5927\u5b78), Beijing University(\u5317\u4eac\u5927\u5b78), and Tsinghua University(\u6e05\u83ef\u5927\u5b78) helping them with essay writing, speaking, listening, and homework. In her free time, Sonidda loves singing at KTV, playing video games, traveling, and cooking new dishes.",
@@ -496,8 +501,7 @@
     ],
     "subjects": [
       "Homework assistance",
-      "My master's is in TESOL",
-      "so I can help with anything related to literacy."
+      "My master's is in TESOL so I can help with anything related to literacy."
     ],
     "education": "Indiana University of Pennsylvania, 2022",
     "major": "Early Childhood",
@@ -538,9 +542,9 @@
       "Interview preparation",
       "Speaking practice"
     ],
-    "education": "Stony brook university 2024",
-    "major": "Linguistics BA/w TESOL cert, Korean studies minor",
-    "minor": "",
+    "education": "Stony Brook University, 2024",
+    "major": "Linguistics BA w/TESOL certificate",
+    "minor": "Korean studies",
     "bio": "Caitlyn is a tri-lingual passionate teacher of languages from New York City, USA. She is certified by NYS to teach TESOL for grades K-12 and is willing to work with older populations as well. She also has experience working with elementary to high school students as a homework assistant as well as tutoring middle schoolers for entrance exams. She hopes to not only help her students with what they need, but also get to know why they are learning English in hopes of nurturing a passion for language and teaching the power of learning languages. ",
     "calendlyLink": "https://calendly.com/caitlyn-chen-tutor"
   },
@@ -556,8 +560,8 @@
       "Essay assistance"
     ],
     "education": "DePaul University, 2023",
-    "major": "Major: Music Performance (oboe), minor: Public Law",
-    "minor": "",
+    "major": "Major: Music Performance (oboe)",
+    "minor": "Public Law",
     "bio": "Koko is currently an EMI ETF (English as a Medium of Instruction English Teaching Flagship) at \u4e2d\u5c71\u5927\u5b78, where she assists university students with English through workshops and one-on-one consultations. Previously, she taught English at an elementary school in Kaohsiung and music at an elementary school in Hawaii, and she also worked as a writing center tutor and music teaching assistant at her university. Next year, she will attend law school. She loves living in Taiwan and is excited to help students become more confident with using English!  :D",
     "calendlyLink": "https://calendly.com/koko-tamai-tutor"
   },
@@ -590,9 +594,9 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Amherst College 2023",
-    "major": "Sociology, Black Studies",
-    "minor": "",
+    "education": "Amherst College, 2023",
+    "major": "Sociology",
+    "minor": "Black Studies",
     "bio": "Jalen is an experienced tutor in elementary level English and middle school math. He is from South Carolina and attended Amherst College in Massachusetts. He is passionate about language education and looking forward to helping strengthen students\u2019 English skills.",
     "calendlyLink": "https://calendly.com/jalen-woodard-tutor"
   },
@@ -607,7 +611,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "University of Georgia 2024",
+    "education": "University of Georgia, 2024",
     "major": "International Affairs",
     "minor": "",
     "bio": "Clemencia is an experienced tutor with a passion for foreign languages. She speaks English, Spanish, French, and Arabic. She loves karaoke, archery, reading, and going to cafes. Clemencia is excited to teach English and introduce learners to American culture.",
@@ -628,7 +632,7 @@
       "Eiken",
       "& BCT-S speaking test prep experience"
     ],
-    "education": "Wellesley College 2017",
+    "education": "Wellesley College, 2017",
     "major": "Cognitive",
     "minor": "",
     "bio": "Jennifer Fang has over 4 years of experience preparing senior high school students for university and beyond. She has coached award-winning speech contest entrants and mentored students now studying at Aichi Prefectural University and Meiji University in Japan. She is available for essay help, interview test practice, and speech coaching.",
@@ -643,7 +647,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "James Madison University 2024",
+    "education": "James Madison University, 2024",
     "major": "Inclusive Early Childhood Education Major, Honors Minor",
     "minor": "",
     "bio": "Amanda is an elementary school teacher from the United States of America. She loves to draw, read, and sing. She has been working with elementary school kids both in and out of school for 5 years. Amanda loves to make learning fun and will work to make lessons based on her students' interests. ",
@@ -662,8 +666,8 @@
       "Essay assistance"
     ],
     "education": "Cornell University, May 2024",
-    "major": "Major: Environmental Science & Economics. Minors: Biology, East Asian Studies",
-    "minor": "",
+    "major": "Environmental Science & Economics",
+    "minor": "Biology, East Asian Studies",
     "bio": "Max is a recent graduate of Cornell University who is interested in promoting international education for students regardless of background. In the past, he has worked to improve high school graduation rates among at-risk students, coached North Macedonian students through American elite college admissions, and interned at an educational institution in the Rocky Mountains. He is the son of a high school English teacher and Japanese immigrant, and has done research or study in Eswatini, South Africa, Ecuador, Morocco, and Panama. In his free time, he likes to run, hike, play tennis, and read. He has been skydiving three times. ",
     "calendlyLink": "https://calendly.com/max-link-tutor"
   },
@@ -679,9 +683,9 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Bates College 2024",
-    "major": "Chinese, Education",
-    "minor": "",
+    "education": "Bates College, 2024",
+    "major": "Chinese",
+    "minor": "Education",
     "bio": "Qi Mei \u7426\u6885 is a recent graduate of Bates College. At Bates, she gained 4 years of teaching experience in elementary school classrooms. In university, she tutored high schoolers in humanities subjects. Additionally, Qi Mei has taught English to Chinese speakers.",
     "calendlyLink": "https://calendly.com/qi-mei-tanneberger-schmidt-tutor"
   },
@@ -696,7 +700,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "The University of Texas at Dallas 2023",
+    "education": "The University of Texas at Dallas, 2023",
     "major": "Geospatial Information Sciences & Political Science",
     "minor": "",
     "bio": "Paulina is an English Teaching Assistant at an elementary school in Kaohsiung. Paulina grew up in Massachusetts, where she was a speech and debate coach at the middle and high school level. In her free time, Paulina loves running, hiking, and traveling. She is excited to help students practice their speaking and writing!",
@@ -715,9 +719,9 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "UC Santa Cruz 2023",
-    "major": "Applied Linguistics & Multilingualism, English Literature",
-    "minor": "",
+    "education": "UC Santa Cruz, 2023",
+    "major": "Applied Linguistics & Multilingualism",
+    "minor": "English Literature",
     "bio": "Eleanor Wilson graduated from the University of California at Santa Cruz with a double B.A. in Applied Linguistics and English Literature. She is an elementary school English teacher here in Taiwan. Before teaching in Taiwan, she worked in essay & homework tutoring, as well as German language tutoring for adults. ",
     "calendlyLink": "https://calendly.com/eleanor-wilson-tutor"
   },
@@ -731,7 +735,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "University of Richmond 2024",
+    "education": "University of Richmond, 2024",
     "major": "Environmental Studies",
     "minor": "",
     "bio": "Zazi Halla graduated from the University of Richmond with a double major in Chinese Studies and Environmental Studies. She has experience teaching elementary students, coaching springboard diving, and serving as a mentor for college-aged students. She is passionate about teaching English and aims for all of her students to feel happy, safe, and excited while in the learning environment. ",
@@ -747,7 +751,7 @@
       "Homework assistance",
       "Speaking practice"
     ],
-    "education": "Georgetown University (2022)",
+    "education": "Georgetown University, 2022",
     "major": "International Relations",
     "minor": "",
     "bio": "Hello! My name is Alex and I\u2019m an English teacher in Changhua. This is my third year teaching English as I\u2019ve taught in Japan, Hualien, and now Changhua. I\u2019m passionate about international relations, but also about sports and Taiwanese food (especially \u6728\u74dc\u725b\u5976)! I\u2019m looking forward to working with you!",
@@ -767,7 +771,7 @@
       "Speaking practice",
       "Essay assistance"
     ],
-    "education": "Northwestern University, Class of 2020",
+    "education": "Northwestern University, 2020",
     "major": "Economics",
     "minor": "",
     "bio": "Hui Ling graduated from Northwestern University with a degree in economics and psychology. She is an ETA at a Taichung elementary school teaching first graders. When she's not out and about soaking in everything Taiwan has to offer, you can find her playing volleyball, curled up with a good book, or learning Chinese. ",
@@ -786,13 +790,13 @@
       "Essay assistance"
     ],
     "education": "Williams College, 2024",
-    "major": "American Studies, Women\u2019s, Gender,",
-    "minor": "",
+    "major": "American Studies",
+    "minor": "Women\u2019s, Gender",
     "bio": "Sunny Hu (she/her) is a first year ETA in Changhua, and home for her is Princeton, New Jersey. She recently graduated from Williams College double majoring in American Studies and Women\u2019s, Gender, and Sexuality Studies and concentrating in Asian American Studies. Sunny is passionate about teaching ethnic studies and has experience building political education curriculum on Asian American Studies for high schoolers in New York City. In her free time, she enjoys curating skincare routines for friends, playing with her two dogs, and staying involved with the disability justice movement! ",
     "calendlyLink": "https://calendly.com/sunny-hu-tutor"
   },
   {
-    "name": "Alyssa Lee (\u674e\u5f69\u82f1\uff09",
+    "name": "Alyssa Lee (\u674e\u5f69\u82f1)",
     "grades": [
       "Elementary Students",
       "Junior High Students",
@@ -806,8 +810,8 @@
       "Essay assistance"
     ],
     "education": "University of Utah, 2023",
-    "major": "Elementary Education Major, Special Education",
-    "minor": "",
+    "major": "Elementary Education Major",
+    "minor": "Special Education",
     "bio": "Alyssa has been teaching elementary school in the United States for two years. Her strengths include giving detailed feedback on writing, interview practice and preparation, and early reading skills. She has previously studied Chinese, and she is between beginner and intermediate. Alyssa is excited to begin her studies here in Taipei, and she would love to work with you!",
     "calendlyLink": "https://calendly.com/alyssa-lee-(\u674e\u5f69\u82f1\uff09-tutor"
   },
@@ -825,52 +829,83 @@
       "Essay assistance"
     ],
     "education": "University of Tennessee, Knoxville",
-    "major": "B.S. Honors Neuroscience, B.A Psychology",
-    "minor": "",
+    "major": "B.S. Honors Neuroscience",
+    "minor": " B.A Psychology",
     "bio": "Steve Mahometano is a first-generation immigrant from the Philippines to Tennessee. He know Tagalog (1st Language), English (2nd language), and French (3rd language). He hopes to get Mandarin as his 4th language while engaging with Taiwan and it various diverse communities. ",
     "calendlyLink": "https://calendly.com/steve-mahometano-tutor"
   }
 ];
 
-        // Function to create a tutor element
+        const gradeColors = {
+            "Elementary Students": "#FFD700",
+            "Junior High Students": "#98FB98",
+            "High School Students": "#87CEFA",
+            "University Students": "#DDA0DD"
+        };
+
         function createTutorElement(tutor) {
+            const gradeTags = tutor.grades.map(grade => 
+                `<span class="grade-tag" style="background-color: ${gradeColors[grade]};">${grade}</span>`
+            ).join('');
+
             return `
                 <div class="tutor">
                     <h2>${tutor.name}</h2>
-                    <div class="tutor-info"><strong>Grade Levels:</strong> ${tutor.grades.join(', ')}</div>
-                    <div class="tutor-info"><strong>Subjects:</strong> ${tutor.subjects.join(', ')}</div>
-                    <div class="tutor-bio">${tutor.bio}</div>
+                    <div class="tutor-info">${gradeTags}</div>
                     <div class="tutor-education">
                         ${tutor.education} • ${tutor.major}${tutor.minor ? ` & ${tutor.minor}` : ''}
                     </div>
-                    <a href="${tutor.calendlyLink}" class="book-button">Book a Session with ${tutor.name.split(' ')[0]}</a>
+                    <div class="tutor-details">
+                        <div class="tutor-subjects"><strong>Subjects:</strong> ${tutor.subjects.join(', ')}</div>
+                        <div class="tutor-bio">${tutor.bio}</div>
+                    </div>
+                    <button class="view-details">View Details</button>
+                    <a href="${tutor.calendlyLink}" class="book-button" target="_blank">Book a Session</a>
                 </div>
             `;
         }
 
-        // Function to filter tutors
         function filterTutors() {
             const gradeFilter = document.getElementById('grade-filter').value;
             const subjectFilter = document.getElementById('subject-filter').value;
+            const searchQuery = document.getElementById('search').value.toLowerCase();
             const tutorContainer = document.getElementById('tutor-container');
             
             tutorContainer.innerHTML = '';
             
             tutors.forEach(tutor => {
                 if ((gradeFilter === 'all' || tutor.grades.includes(gradeFilter)) &&
-                    (subjectFilter === 'all' || tutor.subjects.includes(subjectFilter))) {
+                    (subjectFilter === 'all' || tutor.subjects.includes(subjectFilter)) &&
+                    (searchQuery === '' || 
+                     tutor.name.toLowerCase().includes(searchQuery) ||
+                     tutor.bio.toLowerCase().includes(searchQuery) ||
+                     tutor.subjects.some(subject => subject.toLowerCase().includes(searchQuery)))) {
                     tutorContainer.innerHTML += createTutorElement(tutor);
                 }
             });
+
+            // Add event listeners for "View Details" buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const details = this.previousElementSibling;
+                    if (details.style.display === 'none' || details.style.display === '') {
+                        details.style.display = 'block';
+                        this.textContent = 'Hide Details';
+                    } else {
+                        details.style.display = 'none';
+                        this.textContent = 'View Details';
+                    }
+                });
+            });
         }
 
-        // Initialize the directory
         document.addEventListener('DOMContentLoaded', function() {
             filterTutors();
 
-            // Add event listeners to filters
+            // Add event listeners to filters and search
             document.getElementById('grade-filter').addEventListener('change', filterTutors);
             document.getElementById('subject-filter').addEventListener('change', filterTutors);
+            document.getElementById('search').addEventListener('input', filterTutors);
         });
     </script>
 </body>
