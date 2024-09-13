@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAP Virtual Tutoring Directory</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f4f7f9;
+            --card-background: #ffffff;
+            --text-color: #333333;
+            --text-color-light: #666666;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .filters {
+            background-color: var(--card-background);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        select, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+        #tutor-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .tutor {
+            background-color: var(--card-background);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .tutor:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .tutor h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        .tutor-info {
+            margin-bottom: 10px;
+        }
+        .tutor-details {
+            display: none;
+            margin-bottom: 15px;
+        }
+        .tutor-subjects {
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+        .tutor-bio {
+            margin-bottom: 15px;
+        }
+        .tutor-education {
+            font-size: 0.9em;
+            color: var(--text-color-light);
+            margin-bottom: 15px;
+        }
+        .book-button, .view-details {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .book-button:hover, .view-details:hover {
+            background-color: #27ae60;
+        }
+        .view-details {
+            background-color: var(--primary-color);
+        }
+        .view-details:hover {
+            background-color: #2980b9;
+        }
+        .grade-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+            }
+            .filter-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>LEAP Virtual Tutoring Directory</h1>
+    
+    <div class="filters">
+        <div class="filter-group">
+            <label for="search">Search Tutors:</label>
+            <input type="text" id="search" placeholder="Enter tutor name or keyword">
+        </div>
+        <div class="filter-group">
+            <label for="grade-filter">Filter by Grade Level:</label>
+            <select id="grade-filter">
+                <option value="all">All Grades</option>
+                <option value="Elementary Students">Elementary Students</option>
+                <option value="Junior High Students">Junior High Students</option>
+                <option value="High School Students">High School Students</option>
+                <option value="University Students">University Students</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="subject-filter">Filter by Subject:</label>
+            <select id="subject-filter">
+                <option value="all">All Subjects</option>
+                <option value="Homework assistance">Homework assistance</option>
+                <option value="Interview preparation">Interview preparation</option>
+                <option value="Speaking practice">Speaking practice</option>
+                <option value="Essay assistance">Essay assistance</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="tutor-container"></div>
+
+    <script>
+        const tutors = [
+            {
+                "name": "Lawrence Ma",
+                "grades": ["High School Students", "University Students"],
+                "subjects": ["Homework assistance", "Speaking practice"],
+                "education": "Stony Brook University 2023",
+                "major": "Linguistics",
+                "minor": "",
+                "bio": "Lawrence Ma graduated in 2023 at Stony Brook University with a bachelors in Linguistics. He is skilled in language teaching where he was a teaching assistant for Spanish and participated in an internship teaching underprivileged children English in Indonesia. He is excited to be in Taiwan for a Fulbright fellowship and expand his knowledge of language education.",
+                "calendlyLink": "https://calendly.com/lawrence-ma-tutor"
+            },
+            {
+                "name": "Rachel Dulski",
+                "grades": ["Elementary Students", "Junior High Students"],
+                "subjects": ["Homework assistance", "Speaking practice"],
+                "education": "2024",
+                "major": "Psychology",
+                "minor": "",
+                "bio": "Rachel Dulski graduated from Loyola Marymount University. She belonged to Ignatians Service Organization and participated in service throughout her undergraduate experience. She enjoys teaching children, creating art, and dancing.",
+                "calendlyLink": "https://calendly.com/rachel-dulski-tutor"
+            },
+            {
+                "name": "Jo Smeby",
+                "grades": ["Junior High Students", "High School Students"],
+                "subjects": ["Homework assistance", "Interview preparation", "Speaking practice", "Essay assistance"],
+                "education": "Colorado State University 2023",
+                "major": "Agricultural Education & Equine Science",
+                "minor": "",
+                "bio": "Jo is an experienced high school teacher from Colorado in the United States. She excels at assisting students to find understanding by breaking down content to explain the why and how behind it. Jo is an energetic and positive teacher who values high effort from her students. Outside of school, Jo enjoys reading, hiking, and exploring Taiwan!",
+                "calendlyLink": "https://calendly.com/jo-smeby-tutor"
+            },
+        ];
+
+        const gradeColors = {
+            "Elementary Students": "#FFD700",
+            "Junior High Students": "#98FB98",
+            "High School Students": "#87CEFA",
+            "University Students": "#DDA0DD"
+        };
+
+        function createTutorElement(tutor) {
+            const gradeTags = tutor.grades.map(grade => 
+                `<span class="grade-tag" style="background-color: ${gradeColors[grade]};">${grade}</span>`
+            ).join('');
+
+            return `
+                <div class="tutor">
+                    <h2>${tutor.name}</h2>
+                    <div class="tutor-info">${gradeTags}</div>
+                    <div class="tutor-education">
+                        ${tutor.education} • ${tutor.major}${tutor.minor ? ` & ${tutor.minor}` : ''}
+                    </div>
+                    <div class="tutor-details">
+                        <div class="tutor-subjects"><strong>Subjects:</strong> ${tutor.subjects.join(', ')}</div>
+                        <div class="tutor-bio">${tutor.bio}</div>
+                    </div>
+                    <button class="view-details">View Details</button>
+                    <a href="${tutor.calendlyLink}" class="book-button" target="_blank">Book a Session</a>
+                </div>
+            `;
+        }
+
+        function filterTutors() {
+            const gradeFilter = document.getElementById('grade-filter').value;
+            const subjectFilter = document.getElementById('subject-filter').value;
+            const searchQuery = document.getElementById('search').value.toLowerCase();
+            const tutorContainer = document.getElementById('tutor-container');
+            
+            tutorContainer.innerHTML = '';
+            
+            tutors.forEach(tutor => {
+                if ((gradeFilter === 'all' || tutor.grades.includes(gradeFilter)) &&
+                    (subjectFilter === 'all' || tutor.subjects.includes(subjectFilter)) &&
+                    (searchQuery === '' || 
+                     tutor.name.toLowerCase().includes(searchQuery) ||
+                     tutor.bio.toLowerCase().includes(searchQuery) ||
+                     tutor.subjects.some(subject => subject.toLowerCase().includes(searchQuery)))) {
+                    tutorContainer.innerHTML += createTutorElement(tutor);
+                }
+            });
+
+            // Add event listeners for "View Details" buttons
+            document.querySelectorAll('.view-details').forEach(button => {
+                button.addEventListener('click', function() {
+                    const details = this.previousElementSibling;
+                    if (details.style.display === 'none' || details.style.display === '') {
+                        details.style.display = 'block';
+                        this.textContent = 'Hide Details';
+                    } else {
+                        details.style.display = 'none';
+                        this.textContent = 'View Details';
+                    }
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            filterTutors();
+
+            // Add event listeners to filters and search
+            document.getElementById('grade-filter').addEventListener('change', filterTutors);
+            document.getElementById('subject-filter').addEventListener('change', filterTutors);
+            document.getElementById('search').addEventListener('input', filterTutors);
+        });
+    </script>
+</body>
+</html>
