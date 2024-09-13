@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEAP Virtual Tutoring Directory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .tutor {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .tutor h2 {
+            color: #3498db;
+            margin-top: 0;
+        }
+        .tutor-info {
+            margin-bottom: 10px;
+        }
+        .tutor-bio {
+            font-style: italic;
+        }
+        .book-button {
+            display: inline-block;
+            background-color: #2ecc71;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .book-button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>LEAP Virtual Tutoring Directory</h1>
+    <div id="tutor-container"></div>
+
+    <script>
+        // Tutor data array
+        const tutors = [
+            {
+                name: "John Doe",
+                grades: "9-12",
+                subjects: "Mathematics, Physics",
+                university: "MIT",
+                bio: "John Doe is a passionate educator pursuing his degree in Applied Mathematics at MIT. With a strong background in STEM subjects, he excels in breaking down complex concepts into understandable pieces. John's patient and methodical approach to tutoring has helped numerous students improve their grades and develop a genuine interest in math and science.",
+                calendlyLink: "https://calendly.com/johndoe-tutor"
+            },
+            {
+                name: "Jane Smith",
+                grades: "6-10",
+                subjects: "English, Literature, Writing",
+                university: "Stanford University",
+                bio: "Jane Smith is an enthusiastic English major at Stanford University with a knack for creative writing. Her love for literature and language shines through in her tutoring sessions. Jane specializes in helping students improve their writing skills, analyze literary works, and prepare for standardized English tests. Her engaging teaching style makes learning fun and effective.",
+                calendlyLink: "https://calendly.com/janesmith-tutor"
+            }
+            // Add more tutor objects here
+        ];
+
+        // Function to create a tutor element
+        function createTutorElement(tutor) {
+            return `
+                <div class="tutor">
+                    <h2>${tutor.name}</h2>
+                    <div class="tutor-info"><strong>Grade(s):</strong> ${tutor.grades}</div>
+                    <div class="tutor-info"><strong>Subject(s):</strong> ${tutor.subjects}</div>
+                    <div class="tutor-info"><strong>University:</strong> ${tutor.university}</div>
+                    <div class="tutor-bio">${tutor.bio}</div>
+                    <a href="${tutor.calendlyLink}" class="book-button">Book a Session with ${tutor.name.split(' ')[0]}</a>
+                </div>
+            `;
+        }
+
+        // Populate the tutor container
+        document.addEventListener('DOMContentLoaded', function() {
+            const tutorContainer = document.getElementById('tutor-container');
+            tutors.forEach(tutor => {
+                tutorContainer.innerHTML += createTutorElement(tutor);
+            });
+        });
+    </script>
+</body>
+</html>
