@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Perfect Tutor</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #3b82f6;
+            --accent-color: #1d4ed8;
+            --background-color: #f1f5f9;
+            --card-background: #ffffff;
+            --text-color: #1f2937;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .filters {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            margin-bottom: 30px;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+        .filter-group h2 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        select, button {
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        select {
+            background-color: white;
+            min-width: 200px;
+        }
+
+        .day-button {
+            background-color: #e2e8f0;
+            border: none;
+            cursor: pointer;
+        }
+
+        .day-button.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tutor-card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tutor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        .tutor-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+        }
+
+        .tutor-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .tutor-content {
+            padding: 20px;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .badge {
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .grade-badge {
+            background-color: #818cf8;
+            color: white;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+
+        .focus-badge {
+            background-color: #34d399;
+            color: white;
+        }
+
+        .schedule-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        .schedule-button:hover {
+            background-color: var(--accent-color);
+            text-decoration: none;
+            color: white;
+        }
+
+        .toggle-bio {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .bio {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .bio.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .tutor-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filters {
+                padding: 15px;
+            }
+            
+            select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Find Your Perfect Tutor</h1>
+        
+        <div class="filters">
+            <div class="filter-group">
+                <h2>Grade Level</h2>
+                <select id="grade-filter">
+                    <option value="all">All Grades</option>
+                    <option value="Elementary">Elementary</option>
+                    <option value="Junior High">Junior High</option>
+                    <option value="High School">High School</option>
+                    <option value="University">University</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <h2>Availability</h2>
+                <div class="filter-options">
+                    <button class="day-button" data-day="mon">Mon</button>
+                    <button class="day-button" data-day="tue">Tue</button>
+                    <button class="day-button" data-day="wed">Wed</button>
+                    <button class="day-button" data-day="thu">Thu</button>
+                    <button class="day-button" data-day="fri">Fri</button>
+                    <button class="day-button" id="clear-filter">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tutor-grid" id="tutor-grid">
+            <!-- Tutor cards will be generated here -->
+        </div>
+    </div>
+
+    <script>
+        // Tutor data array
+        const tutors = [
+            {
+                name: "Alyssa Lee (李彩英)",
+                university: "University of Utah",
+                major: "Elementary Education Major, Special Education and Anthropology minors",
+                grades: ["Elementary", "Junior High", "High School", "University"],  // Now an array
+                availability: ["mon", "tue", "wed"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Alyssa has been teaching Elementary school in the United States for two years. Her strengths include giving detailed feedback on writing, interview practice and preparation, and early reading skills. She has previously studied Chinese, and she is between beginner and intermediate. Alyssa is excited to begin her studies here in Taipei, and she would love to work with you!",
+                calendlyLink: "https://calendly.com/johndoe/tutoring"
+            },
+            {
+                name: "X",
+                university: "X",
+                major: "X",
+                grades: ["Elementary", "Junior High", "High School", "University"],  // Now an array
+                availability: ["mon", "tue", "wed"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "X",
+                calendlyLink: "https://calendly.com/johndoe/tutoring"
+            },
+        ];
+
+
+        // Generate tutor cards from array
+        function generateTutorCards() {
+            const tutorGrid = document.getElementById('tutor-grid');
+            tutorGrid.innerHTML = '';
+
+            tutors.forEach(tutor => {
+                const tutorCard = `
+                    <div class="tutor-card" data-grades="${tutor.grades.join(',')}" data-availability="${tutor.availability.join(' ')}">
+                        <div class="tutor-header">
+                            <h3>${tutor.name}</h3>
+                        </div>
+                        <div class="tutor-content">
+                            <p><i class="fas fa-university"></i> ${tutor.university}</p>
+                            <p><i class="fas fa-graduation-cap"></i> ${tutor.major}</p>
+                            
+                            <div class="badge-container">
+                                ${tutor.grades.map(grade => 
+                                    `<span class="badge grade-badge">${grade}</span>`
+                                ).join('')}
+                            </div>
+                            
+                            <div class="badge-container">
+                                ${tutor.focusAreas.map(area => 
+                                    `<span class="badge focus-badge">${area}</span>`
+                                ).join('')}
+                            </div>
+                            
+                            <button class="toggle-bio">Show Bio</button>
+                            <div class="bio">
+                                <p>${tutor.bio}</p>
+                            </div>
+                            
+                            <a href="${tutor.calendlyLink}" target="_blank" class="schedule-button">
+                                Schedule Session
+                            </a>
+                        </div>
+                    </div>
+                `;
+                tutorGrid.innerHTML += tutorCard;
+            });
+
+            // Reattach event listeners for bio toggles
+            document.querySelectorAll('.toggle-bio').forEach(button => {
+                button.addEventListener('click', function() {
+                    const bio = this.nextElementSibling;
+                    bio.classList.toggle('active');
+                    this.textContent = bio.classList.contains('active') ? 'Hide Bio' : 'Show Bio';
+                });
+            });
+        }
+
+        // Initial generation of tutor cards
+        generateTutorCards();
+
+        // Updated filter functionality
+        const gradeFilter = document.getElementById('grade-filter');
+        const dayButtons = document.querySelectorAll('.day-button');
+        const clearFilter = document.getElementById('clear-filter');
+
+        let selectedDays = [];
+
+        function updateFilters() {
+            const selectedGrade = gradeFilter.value;
+            const tutorCards = document.querySelectorAll('.tutor-card');
+            
+            tutorCards.forEach(card => {
+                const grades = card.getAttribute('data-grades').split(',');
+                const availability = card.getAttribute('data-availability');
+                
+                const gradeMatch = selectedGrade === 'all' || grades.includes(selectedGrade);
+                const dayMatch = selectedDays.length === 0 || selectedDays.every(day => availability.includes(day));
+                
+                card.style.display = gradeMatch && dayMatch ? 'block' : 'none';
+            });
+        }
+
+        gradeFilter.addEventListener('change', updateFilters);
+
+        dayButtons.forEach(button => {
+            if (button.id !== 'clear-filter') {
+                button.addEventListener('click', function() {
+                    const day = this.getAttribute('data-day');
+                    this.classList.toggle('active');
+                    
+                    if (selectedDays.includes(day)) {
+                        selectedDays = selectedDays.filter(d => d !== day);
+                    } else {
+                        selectedDays.push(day);
+                    }
+                    
+                    updateFilters();
+                });
+            }
+        });
+
+        clearFilter.addEventListener('click', function() {
+            selectedDays = [];
+            dayButtons.forEach(button => {
+                if (button.id !== 'clear-filter') {
+                    button.classList.remove('active');
+                }
+            });
+            updateFilters();
+        });
+    </script>
+</body>
+</html>
