@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Find Your Perfect Tutor</title>
+    <title>Find Your Tutor</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -197,7 +197,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Find Your Perfect Tutor</h1>
+        <h1>Find Your Tutor</h1>
         
         <div class="filters">
             <div class="filter-group">
@@ -219,6 +219,8 @@
                     <button class="day-button" data-day="wed">Wed</button>
                     <button class="day-button" data-day="thu">Thu</button>
                     <button class="day-button" data-day="fri">Fri</button>
+                    <button class="day-button" data-day="sat">Sat</button>
+                    <button class="day-button" data-day="sun">Sun</button>
                     <button class="day-button" id="clear-filter">Clear</button>
                 </div>
             </div>
@@ -235,22 +237,202 @@
             {
                 name: "Alyssa Lee (李彩英)",
                 university: "University of Utah",
-                major: "Elementary Education Major, Special Education and Anthropology minors",
-                grades: ["Elementary", "Junior High", "High School", "University"],  // Now an array
-                availability: ["mon", "tue", "wed"],
+                major: "Elementary Education Major",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["X"],
                 focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
                 bio: "Alyssa has been teaching Elementary school in the United States for two years. Her strengths include giving detailed feedback on writing, interview practice and preparation, and early reading skills. She has previously studied Chinese, and she is between beginner and intermediate. Alyssa is excited to begin her studies here in Taipei, and she would love to work with you!",
-                calendlyLink: "https://calendly.com/johndoe/tutoring"
+                calendlyLink: "https://calendly.com/alyssalee-paws"
             },
             {
-                name: "X",
-                university: "X",
-                major: "X",
-                grades: ["Elementary", "Junior High", "High School", "University"],  // Now an array
-                availability: ["mon", "tue", "wed"],
+                name: "Vanessa Chuang",
+                university: "Rice University",
+                major: "Psychology, Sociology",
+                grades: ["Elementary", "Junior High", "High School"],
+                availability: ["mon", "tue", "wed","thu","fri"],
                 focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
-                bio: "X",
-                calendlyLink: "https://calendly.com/johndoe/tutoring"
+                bio: "Vanessa graduated from Rice University in May where she studied Psychology and Sociology. She is currently an ETA in a rural town in New Taipei City. Vanessa is excited to volunteer as a tutor and can help with English speaking, writing, and more. She knows some Mandarin.",
+                calendlyLink: "https://calendly.com/chuang-vanessa322"
+            },
+            {
+                name: "Jo Smeby",
+                university: "Colorado State University",
+                major: "Agricultural Education & Equine Science",
+                grades: ["Junior High", "High School"],
+                availability: ["mon", "tue","thu","sat","sun"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Jo is an experienced High School teacher from Colorado in the United States. She excels at assisting  to find understanding by breaking down content to explain the why and how behind it. Jo is an energetic and positive teacher who values high effort from her . Outside of school, Jo enjoys reading, hiking, and exploring Taiwan!",
+                calendlyLink: "https://calendly.com/jordansmeby13"
+            },
+            {
+                name: "Saraswati Vadnais",
+                university: "Carleton College",
+                major: "English",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["tue","thu","fri"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Saraswati is a Fulbright English Teaching Assistant in Chiayi City, currently working with 2nd and 6th grade . She graduated from Carleton College in 2022 with a degree in English literature. Between graduation and coming to Taiwan, she worked as a technical writer at Visa. She is experienced in tutoring  for essay writing, applications, and English as a foreign language. She can also help with interviews and other forms of Speaking!",
+                calendlyLink: "https://calendly.com/svadnais23"
+            },
+            {
+                name: "Chris Mastroianni",
+                university: "Boston College",
+                major: "Mathematics (Finance)",
+                grades: ["Elementary", "Junior High", "High School"],
+                availability: ["tue","wed","thu","fri"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Chris Mastroianni is a 2nd year Taipei ETF who graduated from Boston College in 2021 with a Bachelor's of Science in Math and Finance, magna cum laude. In Taiwan, Chris enjoys participating in marathons, experiencing Taiwan's beautiful nature through hiking, and teaching his 1st and 3rd grade . In addition to teaching various subject classes, Chris also creates and directs English plays at his school, giving his  the chance to both use authentic English and learn about American culture. His prior teaching experience includes four years of one-on-one tutoring, two years of personal training for disabled people, and a year of mentorship experience, gained from leading a YMCA after-school program. Chris is excited to meet you!",
+                calendlyLink: "https://calendly.com/christophermastroianni1"
+            },
+            {
+                name: "Amanda Fischer",
+                university: "James Madison University",
+                major: "Inclusive Early Childhood Education Major",
+                grades: ["Elementary"],
+                availability: ["tue","wed","thu","fri","sat"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Amanda is an Elementary school teacher from the United States of America. She loves to draw, read, and sing. She has been working with Elementary school kids both in and out of school for 5 years. Amanda loves to make learning fun and will work to make lessons based on her interests.",
+                calendlyLink: "https://calendly.com/fischeram2001"
+            },
+            {
+                name: "Max Link",
+                university: "Cornell University",
+                major: "Environmental Science & Economics",
+                grades: ["High School", "University"],
+                availability: ["X"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Max is a recent graduate of Cornell University who is interested in promoting international education for regardless of background. In the past, he has worked to improve High School graduation rates among at-risk , coached North Macedonian  through American elite college admissions, and interned at an educational institution in the Rocky Mountains. He is the son of a High School English teacher and Japanese immigrant, and has done research or study in Eswatini, South Africa, Ecuador, Morocco, and Panama. In his free time, he likes to run, hike, play tennis, and read. He has been skydiving three times.",
+                calendlyLink: "https://calendly.com/max-link-fulbrightmail"
+            },
+            {
+                name: "Caitlyn Chen",
+                university: "Stony brook University",
+                major: "Linguistics",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["mon","tue","wed","thu","fri"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking"],
+                bio: "Caitlyn is a tri-lingual passionate teacher of languages from New York City, USA. She is certified by NYS to teach TESOL for grades K-12 and is willing to work with older populations as well. She also has experience working with Elementary to High School as a homework assistant as well as tutoring middle schoolers for entrance exams. She hopes to not only help her  with what they need, but also get to know why they are learning English in hopes of nurturing a passion for language and teaching the power of learning languages.",
+                calendlyLink: "https://calendly.com/caitlynfirst5918"
+            },
+            {
+                name: "Qi Mei Tanneberger-Schmidt",
+                university: "Bates College",
+                major: "Chinese, Education",
+                grades: ["Elementary", "Junior High"],
+                availability: ["X"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Qi Mei 琦梅 is a recent graduate of Bates College. At Bates, she gained 4 years of teaching experience in Elementary school classrooms. In university, she tutored high schoolers in humanities subjects. Additionally, Qi Mei has taught English to Chinese speakers.",
+                calendlyLink: "https://calendly.com/qimeischmidt/"
+            },
+            {
+                name: "Britney Hong",
+                university: "UNC Chapel Hill",
+                major: "Human Development and Family Science",
+                grades: ["Elementary", "Junior High"],
+                availability: ["tue","wed","thu"],
+                focusAreas: ["Homework Help", "Speaking", "Essay Help"],
+                bio: "Britney is a recent graduate from the University of North Carolina at Chapel Hill who studied Education and American Studies. She speaks English and Cantonese (廣東話). She wants to open her own Cantonese-English bilingual school in America. ",
+                calendlyLink: "https://calendly.com/britneyswim"
+            },
+            {
+                name: "Lawrence Ma",
+                university: "Stony Brook University",
+                major: "Linguistics & International Relations",
+                grades: ["High School", "University"],
+                availability: ["mon","tue","wed","thu","fri","sat"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Lawrence Ma graduated in 2023 at Stony Brook University with a bachelors in Linguistics. He is skilled in language teaching where he was a teaching assistant for Spanish and participated in an internship teaching underprivileged children English in Indonesia. He is excited to be in Taiwan for a Fulbright fellowship and expand his knowledge of language education.",
+                calendlyLink: "https://calendly.com/lawrenma3948"
+            },
+            {
+                name: "Ian Reinke",
+                university: "Columbia University",
+                major: "Eastern European Studies, Middle Eastern Studies, French",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["mon","tue","wed","thu","fri"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Ian is from Milwaukee, Wisconsin and is very excited to be in Taiwan this year teaching English in Chiayi City. He is interested in outdoor activities and loves hiking, running, kayaking, and exploring new places. He also likes learning languages and learning about the history, cultures, and politics of different countries in the world. In the past he has worked as a teaching assistant at his universities where he helped teach French and Russian and is very excited to help others learn English and learn more about America and other English speaking countries!",
+                calendlyLink: "https://calendly.com/ianreinke22"
+            },
+            {
+                name: "Fabian Ouellet-Pinto",
+                university: "University of Iowa",
+                major: "Masters in Teaching: English Education",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["X"],
+                focusAreas: ["Homework Help", "Interview Prep", "Speaking", "Essay Help"],
+                bio: "Fabian Ouellet-Pinto has taught English as a Second Language to Elementary and High School for 3 years. He has also been a writing consultant for the Education department at the University of Iowa, where he assisted PhD with their dissertations. Fabian is an energetic teacher and makes sure his thoroughly understand the material being taught.",
+                calendlyLink: "https://calendly.com/pintofabo"
+            },
+            {
+                name: "Sunny Hu",
+                university: "Williams College",
+                major: "American Studies, Women’s Gender and Sexuality Studies, and Asian American Studies",
+                grades: ["Junior High", "High School", "University"],
+                availability: ["tue","wed","thu"],
+                focusAreas: ["Interview Prep", "Speaking", "Essay Help"],
+                bio: "Sunny Hu (she/her) is a first year ETA in Changhua, and home for her is Princeton, New Jersey. She recently graduated from Williams College double majoring in American Studies and Women’s, Gender, and Sexuality Studies and concentrating in Asian American Studies. Sunny is passionate about teaching ethnic studies and has experience building political education curriculum on Asian American Studies for high schoolers in New York City. In her free time, she enjoys curating skincare routines for friends, playing with her two dogs, and staying involved with the disability justice movement!",
+                calendlyLink: "https://calendly.com/sunny-hu-fulbrightmail"
+            },
+            {
+                name: "Julia Conner",
+                university: "Kenyon College",
+                major: "Chinese and Spanish Languages and Literatures",
+                grades: ["High School", "University"],
+                availability: ["tue","wed"],
+                focusAreas: ["Homework Help", "Speaking", "Essay Help"],
+                bio: "Julia received her degree in Modern Languages and Literatures with a focus in Spanish and Mandarin in 2024 from Kenyon College, where she also served as a college language teaching assistant for five semesters. Her creative work has been featured in or is forthcoming from Poetry in Action and Poetry Northwest. Outside of education and writing, Julia also loves visiting museums, exploring the outdoors, and playing soccer. She is excited to help  achieve their language goals and can't wait to meet you!",
+                calendlyLink: "https://calendly.com/jiwconner"
+            },
+            {
+                name: "Annitah Nakandi",
+                university: "Brandeis University",
+                major: "Education, East Asian Studies",
+                grades: ["Elementary", "Junior High", "University"],
+                availability: ["wed","thu"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Annitah is a 2024 Brandeis University graduate who has been teaching and tutoring since 2017. During college, she studied East Asian Studies, Education and Philosophy. She has many years of experience in teaching English as a second language and she is excited to help you reach your learning goals.",
+                calendlyLink: "https://calendly.com/annitahnakandi13"
+            },
+            {
+                name: "Alex Fisher",
+                university: "Georgetown University",
+                major: "International Relations & Asian Studies",
+                grades: ["Junior High", "High School"],
+                availability: ["X"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Hello! My name is Alex and I’m an English teacher in Changhua. This is my third year teaching English as I’ve taught in Japan, Hualien, and now Changhua. I’m passionate about international relations, but also about sports and Taiwanese food (especially 木瓜牛奶)! I’m looking forward to working with you!",
+                calendlyLink: "https://calendly.com/alexrfisher22"
+            },
+            {
+                name: "Rachel Dulski",
+                university: "Loyola Marymount University",
+                major: "Psychology",
+                grades: ["Elementary", "Junior High"],
+                availability: ["mon","tue","wed","thu","fri"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Rachel Dulski graduated from Loyola Marymount University. She belonged to Ignatians Service Organization and participated in service throughout her undergraduate experience. She enjoys teaching children, creating art, and dancing.",
+                calendlyLink: "https://calendly.com/dulskirachel"
+            },
+            {
+                name: "Shirley Wang",
+                university: "Saint Mary's University",
+                major: "Masters of Teaching",
+                grades: ["Elementary", "Junior High", "High School"],
+                availability: ["tue","wed","sun"],
+                focusAreas: ["Homework Help", "Speaking", "Essay Help"],
+                bio: "Teacher Shirley comes from the USA and is excited to be teaching in Taipei, Taiwan this school year. She has over four years of experience teaching 4th graders, Junior High schoolers, and  with learning disabilities in the US. She holds a Masters of Teaching Degree from Saint Mary's University of Minnesota and a Minnesota Teaching License in K-6 Elementary Education. In her free time, she likes to explore different sites around Taiwan, try new restaurants and cafe, and go hiking.",
+                calendlyLink: "https://calendly.com/xwang1122"
+            },
+            {
+                name: "Koko Tamai",
+                university: "DePaul University",
+                major: "Music Performance Oboe",
+                grades: ["High School", "University"],
+                availability: ["mon","wed"],
+                focusAreas: ["Interview Prep", "Speaking", "Essay Help"],
+                bio: "Koko is currently an EMI ETF (English as a Medium of Instruction English Teaching Flagship) at 中山大學, where she assists University with English through workshops and one-on-one consultations. Previously, she taught English at an Elementary school in Kaohsiung and music at an Elementary school in Hawaii, and she also worked as a writing center tutor and music teaching assistant at her university. Next year, she will attend law school. She loves living in Taiwan and is excited to help  become more confident with using English! :D",
+                calendlyLink: "https://calendly.com/khikaritamai"
             },
         ];
 
