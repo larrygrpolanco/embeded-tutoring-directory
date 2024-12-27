@@ -237,11 +237,61 @@
         // Tutor data array
         const tutors = [
             {
+                name: "Nana Ama Ossei-Wusu",
+                university: "The Ohio State University",
+                major: "Biology",
+                grades: ["Elementary", "Junior High", "High School", "University"],
+                availability: ["sun","mon","thu","fri","sat"],
+                focusAreas: ["Homework Help", "Speaking","Interview Prep"],
+                bio: "Nana Ama Ossei-Wusu grew up in the US after immigrating from Africa and learning how to speak English, herself. She enjoys teaching and has taught All grade levels including university students. She spent her time volunteering to teach elementary students various subjects including English, and was also a Biology and Chemistry teaching assistant for her university.",
+                calendlyLink: "https://calendly.com/nanass02/30min"
+            },
+            {
+                name: "Tyler Ayres",
+                university: "University of Nebraska",
+                major: "English Studies w/ Communication | Mandarin Chinese | Writing, Rhetoric, & Composition",
+                grades: ["High School", "University"],
+                availability: ["wed","thu","sat"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Tyler loves reading, writing, and learning Chinese. He grew up in Pennsylvania and then served in the Air Force for six years. In his spare time, he likes to play guitar, go on bike rides, and swim in the ocean.",
+                calendlyLink: "https://calendly.com/twayres/30min"
+            },
+            {
+                name: "Alexis Campbell",
+                university: "Spelman College",
+                major: "History",
+                grades: ["High School", "University"],
+                availability: ["mon","tue","wed","thu","sat"],
+                focusAreas: ["Homework Help", "Speaking"],
+                bio: "Alexis is from Atlanta, GA, and recently graduated from Spelman College, where she majored in history. She has competed in speech and debate tournaments at the national level and served as a writing tutor in college.In her spare time, she enjoys immersing herself in fantasy literature and crafting various styles of jewelry.",
+                calendlyLink: "https://calendly.com/svalexiscampbell/30-minute-tutoring-session"
+            },
+            {
+                name: "Gemma Fa-Kaji",
+                university: "University of Southern California",
+                major: "M.A. Teaching",
+                grades: ["Junior High", "High School", "University"],
+                availability: ["sun","mon","tue","thu"],
+                focusAreas: ["Homework Help", "Speaking","Interview Prep", "Essay Help"],
+                bio: "Gemma is a graduate from the University of Southern California with a BA in Linguistics and a MA in Teaching. She is currently teaching English at a Junior High in Taipei, Taiwan. Gemma loves language learning, and prioritizes her students' ability to communicate confidently and learn from their mistakes. She looks forward to helping students achieve their English learning goals while connecting to their interests along the way. When she is not teaching, you can find Gemma making art, watching movies, trying new foods, learning music with her students, or exploring new places!",
+                calendlyLink: "https://calendly.com/gemmafakaji/30-minute-tutoring-session"
+            },
+            {
+                name: "Linda Liu",
+                university: "Stanford University",
+                major: "Symbolic Systems",
+                grades: ["Junior High", "High School", "University"],
+                availability: ["sun","tue","wed"],
+                focusAreas: ["Homework Help", "Speaking", "Essay Help"],
+                bio: "Linda is a Fulbright Teaching Assistant in Kaohsiung currently teaching 5th-7th grade. She speaks English and Mandarin. She received her degree in Symbolic Systems, concentrating in Cognitive Science, from Stanford University in 2024. At Stanford, she tutored elementary school students in English and taught health education and computer science.",
+                calendlyLink: "https://calendly.com/lindaliu232011/30-minute-tutoring-session"
+            },
+            {
                 name: "Brooks Durand",
                 university: "Penn State University",
                 major: "English and Journalism",
                 grades: ["Junior High", "High School", "University"],
-                availability: ["sun","mon","tue","wed","thu","fri","sat"],
+                availability: ["mon","tue","thu"],
                 focusAreas: ["Homework Help", "Speaking", "Essay Help"],
                 bio: "Brooks has two years of teaching experience of middle and high school students learning ESL in an Ecuadorian public school. He is currently teaching English through CLIL classes at Zhonglun Middle School in the Songshan district of Taipei. Both positions are co-teaching. He has also worked with adult learners through tutoring Ecuadorian English teachers. He is confident leading independent tutoring sessions and has a beginner level of Mandarin.",
                 calendlyLink: "https://calendly.com/brooks-c-durand/30-min-tutor"
@@ -306,56 +356,6 @@
                 bio: "Ester is a first-year ETF in New Taipei with a strong international background. Originally from Los Angeles, she studied International Relations at UC Davis and spent a year abroad at Yonsei University in South Korea, where she volunteered as an English tutor. In her free time, she loves exploring new cafes and sightseeing, bringing a friendly and open-minded approach to her tutoring.",
                 calendlyLink: "https://calendly.com/ehe0002school/30min"
             }, 
-            {
-                name: "Nana Ama Ossei-Wusu",
-                university: "The Ohio State University",
-                major: "Biology",
-                grades: ["Elementary", "Junior High", "High School", "University"],
-                availability: ["sun","mon","thu","fri","sat"],
-                focusAreas: ["Homework Help", "Speaking","Interview Prep"],
-                bio: "Nana Ama Ossei-Wusu grew up in the US after immigrating from Africa and learning how to speak English, herself. She enjoys teaching and has taught All grade levels including university students. She spent her time volunteering to teach elementary students various subjects including English, and was also a Biology and Chemistry teaching assistant for her university.",
-                calendlyLink: "https://calendly.com/nanass02/30min"
-            },
-            {
-                name: "Tyler Ayres",
-                university: "University of Nebraska",
-                major: "English Studies w/ Communication | Mandarin Chinese | Writing, Rhetoric, & Composition",
-                grades: ["High School", "University"],
-                availability: ["wed","thu","sat"],
-                focusAreas: ["Homework Help", "Speaking"],
-                bio: "Tyler loves reading, writing, and learning Chinese. He grew up in Pennsylvania and then served in the Air Force for six years. In his spare time, he likes to play guitar, go on bike rides, and swim in the ocean.",
-                calendlyLink: "https://calendly.com/twayres/30min"
-            },
-            {
-                name: "Alexis Campbell",
-                university: "Spelman College",
-                major: "History",
-                grades: ["High School", "University"],
-                availability: ["mon","tue","wed","thu","sat"],
-                focusAreas: ["Homework Help", "Speaking"],
-                bio: "Alexis is from Atlanta, GA, and recently graduated from Spelman College, where she majored in history. She has competed in speech and debate tournaments at the national level and served as a writing tutor in college.In her spare time, she enjoys immersing herself in fantasy literature and crafting various styles of jewelry.",
-                calendlyLink: "https://calendly.com/svalexiscampbell/30-minute-tutoring-session"
-            },
-            {
-                name: "Gemma Fa-Kaji",
-                university: "University of Southern California",
-                major: "M.A. Teaching",
-                grades: ["Junior High", "High School", "University"],
-                availability: ["sun","mon","tue","thu"],
-                focusAreas: ["Homework Help", "Speaking","Interview Prep", "Essay Help"],
-                bio: "Gemma is a graduate from the University of Southern California with a BA in Linguistics and a MA in Teaching. She is currently teaching English at a Junior High in Taipei, Taiwan. Gemma loves language learning, and prioritizes her students' ability to communicate confidently and learn from their mistakes. She looks forward to helping students achieve their English learning goals while connecting to their interests along the way. When she is not teaching, you can find Gemma making art, watching movies, trying new foods, learning music with her students, or exploring new places!",
-                calendlyLink: "https://calendly.com/gemmafakaji/30-minute-tutoring-session"
-            },
-            {
-                name: "Linda Liu",
-                university: "Stanford University",
-                major: "Symbolic Systems",
-                grades: ["Junior High", "High School", "University"],
-                availability: ["sun","tue","wed"],
-                focusAreas: ["Homework Help", "Speaking", "Essay Help"],
-                bio: "Linda is a Fulbright Teaching Assistant in Kaohsiung currently teaching 5th-7th grade. She speaks English and Mandarin. She received her degree in Symbolic Systems, concentrating in Cognitive Science, from Stanford University in 2024. At Stanford, she tutored elementary school students in English and taught health education and computer science.",
-                calendlyLink: "https://calendly.com/lindaliu232011/30-minute-tutoring-session"
-            },
             {
                 name: "Lawrence Ma",
                 university: "Stony Brook University",
